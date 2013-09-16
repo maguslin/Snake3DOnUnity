@@ -7,6 +7,7 @@ public class SnakeTail
 	private BoardPoint target;
 	private BoardPoint position;
 	private ObjMovements movements;
+	private DirectionEnum.Direction nextStepDirection;
 	
 	public SnakeTail (GameObject gameObj, BoardPoint position, BoardPoint target)
 	{
@@ -16,26 +17,13 @@ public class SnakeTail
 		this.position = position;
 	}
 	
-	public void MoveFollowing()
+	public void MoveNextStep()
 	{
-		BoardPoint distance = position.DistanceTo(target);
-		
-		if ( distance.X > 0 )
-		{
-			movements.MoveUp();
-		}
-		else if ( distance.X < 0 )
-		{
-			movements.MoveDown();
-		}
-		
-		if ( distance.Y > 0 )
-		{
-			movements.MoveRight();
-		}
-		else if ( distance.Y < 0 )
-		{
-			movements.MoveLeft();
-		}
+		movements.MoveTo(nextStepDirection);
+	}
+	
+	public DirectionEnum.Direction NextStepDirection
+	{
+		set { this.nextStepDirection = value; }
 	}
 }

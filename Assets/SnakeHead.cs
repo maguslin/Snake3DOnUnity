@@ -19,13 +19,7 @@ public class SnakeHead
 	
 	public void MoveForward()
 	{
-		switch(this.direction)
-		{
-		case Direction.UP: movements.MoveUp(); break;
-		case Direction.DOWN:movements.MoveDown(); break;
-		case Direction.RIGHT: movements.MoveRight(); break;
-		case Direction.LEFT: movements.MoveLeft(); break;
-		}
+		movements.MoveTo(this.direction);
 	}
 	
 	public void TurnTo(Direction newDirection)
@@ -39,5 +33,10 @@ public class SnakeHead
 	public BoardPoint Position
 	{
 		get { return this.position; }
+	}
+	
+	public Direction Direction
+	{
+		get { return this.direction; }
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DirectionEnum;
 
 public class ObjMovements {
 	
@@ -35,5 +36,16 @@ public class ObjMovements {
 	public void MoveRight() {
 		position.Y += 1;
 		obj.transform.Translate(1, 0, 0);
+	}
+	
+	public void MoveTo(Direction direction)
+	{
+		switch(direction)
+		{
+		case Direction.UP: this.MoveUp(); break;
+		case Direction.DOWN:this.MoveDown(); break;
+		case Direction.RIGHT: this.MoveRight(); break;
+		case Direction.LEFT: this.MoveLeft(); break;
+		}
 	}
 }

@@ -50,6 +50,7 @@ public class Snake : MonoBehaviour {
 	void MoveObjects ()
 	{
 		this.head.MoveForward();
-		this.tail.MoveFollowing();
+		this.tail.MoveNextStep();
+		this.tail.NextStepDirection = this.head.Direction;
 	}
 }
