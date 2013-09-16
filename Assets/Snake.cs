@@ -5,14 +5,29 @@ using DirectionEnum;
 public class Snake : MonoBehaviour {
 	private float deltaTime;
 	private SnakeHead head;
+	public GameObject snakeTailPrefab;
+	private SnakeTail tail;
 	
 	void Start()
 	{
 		this.head = new SnakeHead(gameObject);
 		this.deltaTime = 0;
+		SnakeTailFactory fac = new SnakeTailFactory(snakeTailPrefab);
+		this.tail = fac.Build(1, 0, head.Position);
 	}
 	// Update is called once per frame
 	void Update ()
+	{
+		CheckKeys ();
+		
+		this.deltaTime += Time.deltaTime;
+		if (deltaTime > 0.075) {
+			MoveObjects ();
+			this.deltaTime = 0;
+		}
+	}
+
+	void CheckKeys ()
 	{
 		if(Input.GetKeyDown(KeyCode.UpArrow))
 		{
@@ -30,10 +45,11 @@ public class Snake : MonoBehaviour {
 		{
 			this.head.TurnTo(Direction.RIGHT);
 		}
-		this.deltaTime += Time.deltaTime;
-		if (deltaTime > 0.075) {
-			this.head.MoveForward();
-			this.deltaTime = 0;
-		}
+	}
+
+	void MoveObjects ()
+	{
+		this.head.MoveForward();
+		this.tail.MoveFollowing();
 	}
 }
