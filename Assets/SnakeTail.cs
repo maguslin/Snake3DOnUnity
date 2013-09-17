@@ -5,13 +5,15 @@ using UnityEngine;
 public class SnakeTail : SnakePiece
 {
 	private GameObject gameObject;
+	private BoardPoint position;
 	private ObjMovements movements;
 	private Direction direction;
 	
-	public SnakeTail (GameObject gameObj, DirectionEnum.Direction direction)
+	public SnakeTail (GameObject gameObj, BoardPoint position, DirectionEnum.Direction direction)
 	{
 		this.gameObject = gameObj;
-		this.movements = new ObjMovements(this.gameObject);
+		this.movements = new ObjMovements(this.gameObject, position);
+		this.position = position;
 		this.direction = direction;
 	}
 	

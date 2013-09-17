@@ -15,6 +15,6 @@ public class SnakeTailFactory {
 		BoardPoint pos = new BoardPoint(0 , 0);
 		ObjMovements movs = new ObjMovements(obj, pos);
 		movs.GoTo(x, y);
-		return new SnakeTail(obj, direction);
+		return new SnakeTail(obj, pos, direction);
 	}
 }
