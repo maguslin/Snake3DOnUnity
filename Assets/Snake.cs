@@ -11,12 +11,6 @@ public class Snake
 	{
 		this.body = new SnakeBody(head);
 		this.tailFactory = tailFactory;
-		
-		this.body.AddTail(tailFactory.Build(0, 4, Direction.UP));
-		this.body.AddTail(tailFactory.Build(0, 3, Direction.UP));
-		this.body.AddTail(tailFactory.Build(0, 2, Direction.UP));
-		this.body.AddTail(tailFactory.Build(0, 1, Direction.UP));
-		this.body.AddTail(tailFactory.Build(0, 0, Direction.UP));
 	}
 	
 	public void TurnTo(Direction direction)
@@ -30,6 +24,12 @@ public class Snake
 		UpdateSnakePartsReferences();
 	}
 	
+	public void Grow ()
+	{
+		BoardPoint positionLast = this.body.LastPiece().Position;
+		SnakeTail newTail = tailFactory.Build(positionLast.X, positionLast.Y, Direction.NONE);
+		this.body.AddTail(newTail);
+	}
 	
 	void MoveSnake ()
 	{

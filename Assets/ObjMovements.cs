@@ -18,23 +18,23 @@ public class ObjMovements {
 	}
 	
 	public void MoveUp() {
-		position.X += 1;
+		position.Y += 1;
 		obj.transform.Translate(0, 0, 1);
 	}
 	
 	public void MoveDown() {
-		position.X -= 1;
+		position.Y -= 1;
 		obj.transform.Translate(0, 0, -1);
 	}
 	
 	public void MoveLeft() {
-		position.Y -= 1;
+		position.X -= 1;
 		obj.transform.Translate(-1, 0, 0);
 	}
 	
 	
 	public void MoveRight() {
-		position.Y += 1;
+		position.X += 1;
 		obj.transform.Translate(1, 0, 0);
 	}
 	

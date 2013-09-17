@@ -34,4 +34,9 @@ public class SnakeTail : SnakePiece
 	{
 		get { return this.direction; }
 	}
+	
+	public BoardPoint Position
+	{
+		get { return this.position; }
+	}
 }

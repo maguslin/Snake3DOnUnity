@@ -21,6 +21,11 @@ public class SnakeBody
 		pieces.Add(tail);
 	}
 	
+	public SnakePiece LastPiece()
+	{
+		return this.pieces[this.pieces.Count-1];
+	}
+	
 	public SnakeHead Head
 	{
 		get { return this.head; }

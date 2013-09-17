@@ -12,10 +12,10 @@ namespace DirectionEnum
 			case Direction.DOWN: return Direction.UP;
 			case Direction.LEFT: return Direction.RIGHT;
 			case Direction.RIGHT: return Direction.LEFT;
-			default: return Direction.UP;
+			default: return Direction.NONE;
 			}
 		}
 	}
 	
-	public enum Direction {	UP, RIGHT, DOWN, LEFT }
+	public enum Direction {	UP, RIGHT, DOWN, LEFT, NONE }
 }

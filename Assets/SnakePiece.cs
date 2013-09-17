@@ -12,5 +12,10 @@ public interface SnakePiece
 		get;
 	}
 	
+	BoardPoint Position
+	{
+		get;
+	}
+	
 }
 

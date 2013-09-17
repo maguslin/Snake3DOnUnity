@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using DirectionEnum;
+using System;
 
 public class SnakeHead : SnakePiece
 {
@@ -11,7 +12,9 @@ public class SnakeHead : SnakePiece
 	
 	public SnakeHead (GameObject gameObject)
 	{
-		this.position = new BoardPoint(0, 0);
+		int x = Convert.ToInt32(gameObject.transform.position.x);
+		int z = Convert.ToInt32(gameObject.transform.position.z);
+		this.position = new BoardPoint(x, z);
 		this.gameObject = gameObject;
 		this.direction = Direction.UP;
 		this.movements = new ObjMovements(this.gameObject, this.position);

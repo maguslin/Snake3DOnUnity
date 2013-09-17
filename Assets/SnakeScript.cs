@@ -44,6 +44,9 @@ public class SnakeScript : MonoBehaviour {
 		else if(Input.GetKeyDown(KeyCode.RightArrow))
 		{
 			this.snake.TurnTo(Direction.RIGHT);
+		} else if(Input.GetKeyDown(KeyCode.Space))
+		{
+			this.snake.Grow();
 		}
 	}
 }
