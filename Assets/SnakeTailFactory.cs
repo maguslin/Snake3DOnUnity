@@ -12,7 +12,9 @@ public class SnakeTailFactory {
 	public SnakeTail Build(int x, int y, BoardPoint target)
 	{
 		GameObject obj = GameObject.Instantiate(prefab) as GameObject;
-		BoardPoint pos = new BoardPoint(x, y);
+		BoardPoint pos = new BoardPoint(0 , 0);
+		ObjMovements movs = new ObjMovements(obj, pos);
+		movs.GoTo(x, y);
 		return new SnakeTail(obj, pos, target);
 	}
 }

@@ -21,8 +21,8 @@ public class Snake : MonoBehaviour {
 		CheckKeys ();
 		
 		this.deltaTime += Time.deltaTime;
-		if (deltaTime > 0.075) {
-			MoveObjects ();
+		if (deltaTime > 0.5) {
+			//MoveObjects ();
 			this.deltaTime = 0;
 		}
 	}
@@ -49,8 +49,8 @@ public class Snake : MonoBehaviour {
 
 	void MoveObjects ()
 	{
-		this.head.MoveForward();
 		this.tail.MoveNextStep();
 		this.tail.NextStepDirection = this.head.Direction;
+		this.head.MoveForward();
 	}
 }

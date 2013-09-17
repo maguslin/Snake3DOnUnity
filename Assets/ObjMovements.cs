@@ -48,4 +48,20 @@ public class ObjMovements {
 		case Direction.LEFT: this.MoveLeft(); break;
 		}
 	}
+	
+	public void Move(int x, int y)
+	{
+		position.X += x;
+		position.Y += y;
+		obj.transform.Translate(x, 0, y);
+	}
+	
+	public void GoTo(int x, int y)
+	{
+		int DeltaX = x - position.X;
+		int DeltaY = y - position.Y;
+		this.Move(DeltaX, DeltaY);
+	}
+	
+	
 }

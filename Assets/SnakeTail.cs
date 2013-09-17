@@ -19,7 +19,7 @@ public class SnakeTail
 	
 	public void MoveNextStep()
 	{
-		movements.MoveTo(nextStepDirection);
+		movements.MoveTo(this.nextStepDirection);
 	}
 	
 	public DirectionEnum.Direction NextStepDirection
