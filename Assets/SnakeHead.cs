@@ -2,7 +2,7 @@
 using System.Collections;
 using DirectionEnum;
 
-public class SnakeHead
+public class SnakeHead : SnakePiece
 {
 	private ObjMovements movements;
 	private Direction direction;

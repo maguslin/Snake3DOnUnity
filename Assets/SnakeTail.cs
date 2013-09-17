@@ -1,12 +1,13 @@
 using System;
+using DirectionEnum;
 using UnityEngine;
 
-public class SnakeTail
+public class SnakeTail : SnakePiece
 {
 	private GameObject gameObject;
 	private BoardPoint position;
 	private ObjMovements movements;
-	private DirectionEnum.Direction direction;
+	private Direction direction;
 	
 	public SnakeTail (GameObject gameObj, BoardPoint position, DirectionEnum.Direction direction)
 	{
@@ -16,14 +17,21 @@ public class SnakeTail
 		this.direction = direction;
 	}
 	
-	public void MoveNextStep()
+	public void MoveForward()
 	{
 		movements.MoveTo(this.direction);
 	}
 	
-	public DirectionEnum.Direction Direction
+	public void TurnTo(Direction newDirection)
+	{
+		if(newDirection != this.direction.Reverse())
+		{
+			this.direction = newDirection;
+		}
+	}
+	
+	public Direction Direction
 	{
 		get { return this.direction; }
-		set { this.direction = value; }
 	}
 }

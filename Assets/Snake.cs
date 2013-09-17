@@ -1,65 +1,40 @@
-﻿using UnityEngine;
-using System.Collections;
-using DirectionEnum;
+using System;
 using System.Collections.Generic;
+using DirectionEnum;
 
-public class Snake : MonoBehaviour {
-	private float deltaTime;
-	private SnakeHead head;
-	public GameObject snakeTailPrefab;
-	private List<SnakeTail> tails;
+public class Snake
+{
+	private SnakeBody body;
+	private SnakeTailFactory tailFactory;
 	
-	void Start()
+	public Snake (SnakeHead head, SnakeTailFactory tailFactory)
 	{
-		this.head = new SnakeHead(gameObject);
-		this.deltaTime = 0;
-		this.tails = new List<SnakeTail>();
-		SnakeTailFactory fac = new SnakeTailFactory(snakeTailPrefab);
-		this.tails.Add(fac.Build(0, 4, Direction.UP));
-		this.tails.Add(fac.Build(0, 3, Direction.UP));
-		this.tails.Add(fac.Build(0, 2, Direction.UP));
-		this.tails.Add(fac.Build(0, 1, Direction.UP));
-		this.tails.Add(fac.Build(0, 0, Direction.UP));
-	}
-	// Update is called once per frame
-	void Update ()
-	{
-		CheckKeys ();
+		this.body = new SnakeBody(head);
+		this.tailFactory = tailFactory;
 		
-		this.deltaTime += Time.deltaTime;
-		if (deltaTime > 0.075) {
-			MoveSnake();
-			UpdateSnakePartsReferences();
-			
-			this.deltaTime = 0;
-		}
+		this.body.AddTail(tailFactory.Build(0, 4, Direction.UP));
+		this.body.AddTail(tailFactory.Build(0, 3, Direction.UP));
+		this.body.AddTail(tailFactory.Build(0, 2, Direction.UP));
+		this.body.AddTail(tailFactory.Build(0, 1, Direction.UP));
+		this.body.AddTail(tailFactory.Build(0, 0, Direction.UP));
 	}
-
-	void CheckKeys ()
+	
+	public void TurnTo(Direction direction)
 	{
-		if(Input.GetKeyDown(KeyCode.UpArrow))
-		{
-			this.head.TurnTo(Direction.UP);
-		}
-		else if(Input.GetKeyDown(KeyCode.DownArrow))
-		{
-			this.head.TurnTo(Direction.DOWN);
-		}
-		else if(Input.GetKeyDown(KeyCode.LeftArrow))
-		{
-			this.head.TurnTo(Direction.LEFT);
-		}
-		else if(Input.GetKeyDown(KeyCode.RightArrow))
-		{
-			this.head.TurnTo(Direction.RIGHT);
-		}
+		this.body.Head.TurnTo(direction);
 	}
-
+	
+	public void MoveStepForward()
+	{
+		MoveSnake();
+		UpdateSnakePartsReferences();
+	}
+	
+	
 	void MoveSnake ()
 	{
-		this.head.MoveForward();
-		foreach ( SnakeTail tail in this.tails ) {
-			tail.MoveNextStep();
+		foreach ( SnakePiece piece in this.body.Pieces ) {
+			piece.MoveForward();
 		}
 	}
 	
@@ -67,11 +42,13 @@ public class Snake : MonoBehaviour {
 	{
 		int i;
 		int size;
-		size = this.tails.Count;
-		for ( i = size - 1 ; i > 0 ; i-- )
+		
+		List<SnakePiece> pieces = this.body.Pieces;
+		size = pieces.Count;
+		
+		for ( i = size - 2 ; i >= 0 ; i-- )
 		{
-			this.tails[i].Direction = this.tails[i-1].Direction;
+			pieces[i+1].TurnTo(pieces[i].Direction);
 		}
-		this.tails[0].Direction = this.head.Direction;
 	}
 }
