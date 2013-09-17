@@ -13,7 +13,7 @@ public class Snake : MonoBehaviour {
 		this.head = new SnakeHead(gameObject);
 		this.deltaTime = 0;
 		SnakeTailFactory fac = new SnakeTailFactory(snakeTailPrefab);
-		this.tail = fac.Build(1, 0, head.Position);
+		this.tail = fac.Build(0, 0, head.Position);
 	}
 	// Update is called once per frame
 	void Update ()
@@ -21,8 +21,8 @@ public class Snake : MonoBehaviour {
 		CheckKeys ();
 		
 		this.deltaTime += Time.deltaTime;
-		if (deltaTime > 0.5) {
-			//MoveObjects ();
+		if (deltaTime > 0.075) {
+			MoveObjects ();
 			this.deltaTime = 0;
 		}
 	}
