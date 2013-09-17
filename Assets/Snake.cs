@@ -13,8 +13,8 @@ public class Snake : MonoBehaviour {
 	{
 		this.head = new SnakeHead(gameObject);
 		this.deltaTime = 0;
-		SnakeTailFactory fac = new SnakeTailFactory(snakeTailPrefab);
 		this.tails = new List<SnakeTail>();
+		SnakeTailFactory fac = new SnakeTailFactory(snakeTailPrefab);
 		this.tails.Add(fac.Build(0, 4, Direction.UP));
 		this.tails.Add(fac.Build(0, 3, Direction.UP));
 		this.tails.Add(fac.Build(0, 2, Direction.UP));
@@ -28,7 +28,9 @@ public class Snake : MonoBehaviour {
 		
 		this.deltaTime += Time.deltaTime;
 		if (deltaTime > 0.075) {
-			MoveObjects ();
+			MoveSnake();
+			UpdateSnakePartsReferences();
+			
 			this.deltaTime = 0;
 		}
 	}
@@ -53,23 +55,23 @@ public class Snake : MonoBehaviour {
 		}
 	}
 
-	void MoveObjects ()
+	void MoveSnake ()
 	{
-		int i;
-		int size;
-		
 		this.head.MoveForward();
 		foreach ( SnakeTail tail in this.tails ) {
 			tail.MoveNextStep();
 		}
-		
+	}
+	
+	void UpdateSnakePartsReferences()
+	{
+		int i;
+		int size;
 		size = this.tails.Count;
 		for ( i = size - 1 ; i > 0 ; i-- )
 		{
-			this.tails[i].NextStepDirection = this.tails[i-1].NextStepDirection;
+			this.tails[i].Direction = this.tails[i-1].Direction;
 		}
-		
-		this.tails[0].NextStepDirection = this.head.Direction;
-		size = this.tails.Count;
+		this.tails[0].Direction = this.head.Direction;
 	}
 }
