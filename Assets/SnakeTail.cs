@@ -12,7 +12,7 @@ public class SnakeTail : SnakePiece
 	public SnakeTail (GameObject gameObj, BoardPoint position, DirectionEnum.Direction direction)
 	{
 		this.gameObject = gameObj;
-		this.movements = new ObjMovements(this.gameObject, position);
+		this.movements = new ObjMovements(this.gameObject.transform, position);
 		this.position = position;
 		this.direction = direction;
 	}

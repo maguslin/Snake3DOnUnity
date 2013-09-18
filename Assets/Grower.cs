@@ -10,7 +10,7 @@ public class Grower
 	{
 		BoardPointFactory pointFac = new BoardPointFactory();
 		this.position = pointFac.FromGameObjPosition(obj);
-		this.movs = new ObjMovements(obj, this.position);
+		this.movs = new ObjMovements(obj.transform, this.position);
 	}
 	
 	public void GoToRandomly()

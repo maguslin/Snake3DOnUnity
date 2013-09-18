@@ -18,7 +18,7 @@ public class SnakeHead : SnakePiece
 		this.position = pointFac.FromGameObjPosition(gameObject);
 		this.gameObject = gameObject;
 		this.direction = Direction.UP;
-		this.movements = new ObjMovements(this.gameObject, this.position);
+		this.movements = new ObjMovements(this.gameObject.transform, this.position);
 		this.turns = new List<Direction>();
 	}
 	

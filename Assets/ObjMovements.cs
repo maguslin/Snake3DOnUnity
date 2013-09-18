@@ -4,37 +4,33 @@ using DirectionEnum;
 
 public class ObjMovements {
 	
-	private GameObject obj;
+	private Transform transform;
 	private BoardPoint position;
 	
-	public ObjMovements(GameObject obj) {
-		this.obj = obj;
+	public ObjMovements(Transform transform) {
+		this.transform = transform;
 		this.position = new BoardPoint(0, 0);
 	}
 	
-	public ObjMovements(GameObject obj, BoardPoint position) {
-		this.obj = obj;
+	public ObjMovements(Transform transform, BoardPoint position) {
+		this.transform = transform;
 		this.position = position;
 	}
 	
 	public void MoveUp() {
-		position.Y += 1;
 		this.Move(0, 1);
 	}
 	
 	public void MoveDown() {
-		position.Y -= 1;
 		this.Move (0, -1);
 	}
 	
 	public void MoveLeft() {
-		position.X -= 1;
 		this.Move (-1, 0);
 	}
 	
 	
 	public void MoveRight() {
-		position.X += 1;
 		this.Move(1, 0);
 	}
 	
@@ -49,13 +45,6 @@ public class ObjMovements {
 		}
 	}
 	
-	public void Move(int x, int y)
-	{
-		position.X += x;
-		position.Y += y;
-		obj.transform.Translate(x, 0, y);
-	}
-	
 	public void GoTo(int x, int y)
 	{
 		int DeltaX = x - position.X;
@@ -63,5 +52,11 @@ public class ObjMovements {
 		this.Move(DeltaX, DeltaY);
 	}
 	
+	public void Move(int x, int y)
+	{
+		position.X += x;
+		position.Y += y;
+		this.transform.Translate(x, 0, y);
+	}
 	
 }
