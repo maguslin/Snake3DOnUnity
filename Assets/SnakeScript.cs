@@ -44,7 +44,13 @@ public class SnakeScript : MonoBehaviour {
 		else if(Input.GetKeyDown(KeyCode.RightArrow))
 		{
 			this.snake.TurnTo(Direction.RIGHT);
-		} else if(Input.GetKeyDown(KeyCode.Space))
+		}
+	}
+	
+	void OnCollisionEnter (Collision collision)
+	{
+		GameObject collider = collision.gameObject;
+		if (collider.name == "Grower")
 		{
 			this.snake.Grow();
 		}

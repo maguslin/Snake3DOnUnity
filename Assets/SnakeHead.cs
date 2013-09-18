@@ -12,9 +12,8 @@ public class SnakeHead : SnakePiece
 	
 	public SnakeHead (GameObject gameObject)
 	{
-		int x = Convert.ToInt32(gameObject.transform.position.x);
-		int z = Convert.ToInt32(gameObject.transform.position.z);
-		this.position = new BoardPoint(x, z);
+		BoardPointFactory pointFac = new BoardPointFactory();
+		this.position = pointFac.FromGameObjPosition(gameObject);
 		this.gameObject = gameObject;
 		this.direction = Direction.UP;
 		this.movements = new ObjMovements(this.gameObject, this.position);
