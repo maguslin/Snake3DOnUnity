@@ -22,6 +22,7 @@ public class Snake
 	{
 		MoveSnake();
 		UpdateSnakePartsReferences();
+		this.body.Head.UpdateDirection();
 	}
 	
 	public void Grow ()

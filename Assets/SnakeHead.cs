@@ -2,6 +2,7 @@
 using System.Collections;
 using DirectionEnum;
 using System;
+using System.Collections.Generic;
 
 public class SnakeHead : SnakePiece
 {
@@ -9,6 +10,7 @@ public class SnakeHead : SnakePiece
 	private Direction direction;
 	private GameObject gameObject;
 	private BoardPoint position;
+	private List<Direction> turns;
 	
 	public SnakeHead (GameObject gameObject)
 	{
@@ -17,6 +19,7 @@ public class SnakeHead : SnakePiece
 		this.gameObject = gameObject;
 		this.direction = Direction.UP;
 		this.movements = new ObjMovements(this.gameObject, this.position);
+		this.turns = new List<Direction>();
 	}
 	
 	public void MoveForward()
@@ -24,11 +27,30 @@ public class SnakeHead : SnakePiece
 		movements.MoveTo(this.direction);
 	}
 	
+	public void UpdateDirection()
+	{
+		if (this.turns.Count != 0)
+		{
+			this.direction = this.turns[0];
+			this.turns.RemoveAt(0);
+		}
+	}
+	
 	public void TurnTo(Direction newDirection)
 	{
-		if(newDirection != this.direction.Reverse())
+		Direction previous;
+		if(this.turns.Count == 0)
 		{
-			this.direction = newDirection;
+			previous = this.direction;
+		}
+		else
+		{
+			previous = this.turns[this.turns.Count-1];
+		}
+		
+		if(newDirection != previous.Reverse() || newDirection == previous)
+		{
+			this.turns.Add(newDirection);
 		}
 	}
 	
