@@ -50,9 +50,25 @@ public class SnakeScript : MonoBehaviour {
 	void OnCollisionEnter (Collision collision)
 	{
 		GameObject collider = collision.gameObject;
-		if (collider.name == "Grower")
+		switch(collider.name)
 		{
-			this.snake.Grow();
+		case "Grower": this.snake.Grow(); break;
+		case "SnakeTailPrefab(Clone)": GameOver(); break;
 		}
+	}
+	
+	void OnCollisionExit(Collision col)
+	{
+		GameObject collider = col.gameObject;
+		if(collider.name == "field")
+		{
+			GameOver();
+		}
+	}
+	
+	void GameOver()
+	{
+		Debug.Log ("GAME OVER");
+		UnityEditor.EditorApplication.isPlaying = false;
 	}
 }

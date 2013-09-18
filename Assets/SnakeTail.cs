@@ -20,6 +20,7 @@ public class SnakeTail : SnakePiece
 	public void MoveForward()
 	{
 		movements.MoveTo(this.direction);
+		gameObject.GetComponent<Collider>().enabled = true;
 	}
 	
 	public void TurnTo(Direction newDirection)
