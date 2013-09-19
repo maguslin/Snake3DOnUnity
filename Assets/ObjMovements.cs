@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using DirectionEnum;
 
 public class ObjMovements {
@@ -18,20 +18,28 @@ public class ObjMovements {
 	}
 	
 	public void MoveUp() {
-		this.Move(0, 1);
+		RotateTo(Direction.UP);
+		position.Y += 1;
+		TranslateFront();
 	}
 	
 	public void MoveDown() {
-		this.Move (0, -1);
+		RotateTo(Direction.DOWN);
+		position.Y -= 1;
+		TranslateFront();
 	}
 	
 	public void MoveLeft() {
-		this.Move (-1, 0);
+		RotateTo(Direction.LEFT);
+		position.X -= 1;
+		TranslateFront();
 	}
 	
 	
 	public void MoveRight() {
-		this.Move(1, 0);
+		RotateTo(Direction.RIGHT);
+		position.X += 1;
+		TranslateFront();
 	}
 	
 	public void MoveTo(Direction direction)
@@ -54,9 +62,30 @@ public class ObjMovements {
 	
 	public void Move(int x, int y)
 	{
+		RotateTo(Direction.UP);
 		position.X += x;
 		position.Y += y;
 		this.transform.Translate(x, 0, y);
 	}
 	
+	void RotateTo(Direction direction)
+	{
+		int angle;
+		
+		switch(direction)
+		{
+		case Direction.UP: angle = 0; break;
+		case Direction.RIGHT: angle = 90; break;
+		case Direction.DOWN: angle = 180; break;
+		case Direction.LEFT: angle = 270; break;
+		default: angle = 0; break;
+		}
+		
+		transform.Rotate(0, angle - transform.rotation.eulerAngles.y, 0);
+	}
+
+	void TranslateFront ()
+	{
+		this.transform.Translate(0, 0, 1);
+	}
 }
