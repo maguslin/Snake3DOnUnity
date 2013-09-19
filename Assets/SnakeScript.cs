@@ -10,8 +10,7 @@ public class SnakeScript : MonoBehaviour {
 	
 	void Start()
 	{
-		SnakeFactory fac = new SnakeFactory();
-		this.snake = fac.BuildFromUnityObjs(gameObject, snakeTailPrefab);
+		this.snake = Snake.Instance();
 		this.deltaTime = 0;
 	}
 	// Update is called once per frame

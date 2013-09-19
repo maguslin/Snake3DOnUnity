@@ -4,10 +4,12 @@ using DirectionEnum;
 
 public class Snake
 {
+	private static Snake instance;
+	
 	private SnakeBody body;
 	private SnakeTailFactory tailFactory;
 	
-	public Snake (SnakeHead head, SnakeTailFactory tailFactory)
+	private Snake (SnakeHead head, SnakeTailFactory tailFactory)
 	{
 		this.body = new SnakeBody(head);
 		this.tailFactory = tailFactory;
@@ -52,4 +54,15 @@ public class Snake
 			pieces[i+1].TurnTo(pieces[i].Direction);
 		}
 	}
+	
+	public static Snake Instance()
+	{
+		SceneObjectsFinder finder = new SceneObjectsFinder();
+		if (instance == null)
+		{
+			instance = new Snake(finder.SnakeHead(), finder.SnakeTailFactory());
+		}
+		return instance;
+	}
+	
 }
