@@ -3,10 +3,9 @@ using System.Collections;
 using DirectionEnum;
 using System.Collections.Generic;
 
-public class SnakeScript : MonoBehaviour {
+public class SnakeMovementsScript : MonoBehaviour {
 	private float deltaTime;
 	private Snake snake;
-	public GameObject snakeTailPrefab;
 	
 	void Start()
 	{
@@ -44,30 +43,5 @@ public class SnakeScript : MonoBehaviour {
 		{
 			this.snake.TurnTo(Direction.RIGHT);
 		}
-	}
-	
-	void OnCollisionEnter (Collision collision)
-	{
-		GameObject collider = collision.gameObject;
-		switch(collider.name)
-		{
-		case "Grower": this.snake.Grow(); break;
-		case "SnakeTailPrefab(Clone)": GameOver(); break;
-		}
-	}
-	
-	void OnCollisionExit(Collision col)
-	{
-		GameObject collider = col.gameObject;
-		if(collider.name == "field")
-		{
-			GameOver();
-		}
-	}
-	
-	void GameOver()
-	{
-		Debug.Log ("GAME OVER");
-		UnityEditor.EditorApplication.isPlaying = false;
 	}
 }
