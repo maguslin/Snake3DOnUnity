@@ -8,9 +8,10 @@ public class GrowerScript : MonoBehaviour {
 		this.grower = new Grower(this.gameObject);
 	}
 	
-	void OnCollisionEnter (Collision col)
+	void OnTriggerEnter (Collider col  ) 
 	{
-		GameObject collider = col.gameObject;
+			GameObject collider = col.gameObject;
+
 		if (collider.name == "SnakeHead")
 		{
 			this.grower.GoToRandomly();

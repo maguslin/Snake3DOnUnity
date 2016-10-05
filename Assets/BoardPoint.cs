@@ -2,10 +2,10 @@ using System;
 
 public class BoardPoint
 {
-	private int x;
-	private int y;
+	private float x;
+	private float y;
 	
-	public BoardPoint (int x, int y)
+	public BoardPoint (float x, float y)
 	{
 		this.x = x;
 		this.y = y;
@@ -16,13 +16,13 @@ public class BoardPoint
 		return new BoardPoint(p.X - this.X, p.Y - this.Y);
 	}
 	
-	public int X
+	public float X
 	{
 		get { return this.x; }
 		set { this.x = value; }
 	}
 	
-	public int Y
+	public float Y
 	{
 		get { return this.y; }
 		set { this.y = value; }

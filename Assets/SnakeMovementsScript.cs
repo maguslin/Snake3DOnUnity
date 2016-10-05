@@ -6,7 +6,6 @@ using System.Collections.Generic;
 public class SnakeMovementsScript : MonoBehaviour {
 	private float deltaTime;
 	private Snake snake;
-	
 	void Start()
 	{
 		this.snake = Snake.Instance();
@@ -27,19 +26,19 @@ public class SnakeMovementsScript : MonoBehaviour {
 
 	void CheckKeys ()
 	{
-		if(Input.GetKeyDown(KeyCode.UpArrow))
+		if(Input.GetKeyDown(KeyCode.UpArrow) ||Input.GetKeyDown(KeyCode.W))
 		{
 			this.snake.TurnTo(Direction.UP);
 		}
-		else if(Input.GetKeyDown(KeyCode.DownArrow))
+		else if(Input.GetKeyDown(KeyCode.DownArrow)||Input.GetKeyDown(KeyCode.S))
 		{
 			this.snake.TurnTo(Direction.DOWN);
 		}
-		else if(Input.GetKeyDown(KeyCode.LeftArrow))
+		else if(Input.GetKeyDown(KeyCode.LeftArrow)||Input.GetKeyDown(KeyCode.A))
 		{
 			this.snake.TurnTo(Direction.LEFT);
 		}
-		else if(Input.GetKeyDown(KeyCode.RightArrow))
+		else if(Input.GetKeyDown(KeyCode.RightArrow)||Input.GetKeyDown(KeyCode.D))
 		{
 			this.snake.TurnTo(Direction.RIGHT);
 		}

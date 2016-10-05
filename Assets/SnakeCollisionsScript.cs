@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 public class SnakeCollisionsScript : MonoBehaviour {
 	private Snake snake;
-	
+	public Image gameover;
 	void Start () {
 		this.snake = Snake.Instance();
+		gameover.gameObject.SetActive(false);
 	}
 	
-	void OnCollisionEnter (Collision collision)
+	void OnTriggerEnter  (Collider collision)
 	{
 		GameObject collider = collision.gameObject;
 		switch(collider.name)
@@ -26,10 +27,11 @@ public class SnakeCollisionsScript : MonoBehaviour {
 			GameOver();
 		}
 	}
-	
+
 	void GameOver()
 	{
 		Debug.Log ("GAME OVER");
-		UnityEditor.EditorApplication.isPlaying = false;
+		gameover.gameObject.SetActive(true);
+		//UnityEditor.EditorApplication.isPlaying = false;
 	}
 }

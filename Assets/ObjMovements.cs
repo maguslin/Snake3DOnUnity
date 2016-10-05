@@ -6,7 +6,8 @@ public class ObjMovements {
 	
 	private Transform transform;
 	private BoardPoint position;
-	
+	public float speed=1f;
+	public int grid = 1;
 	public ObjMovements(Transform transform) {
 		this.transform = transform;
 		this.position = new BoardPoint(0, 0);
@@ -19,26 +20,26 @@ public class ObjMovements {
 	
 	public void MoveUp() {
 		RotateTo(Direction.UP);
-		position.Y += 1;
+		position.Y += grid;
 		TranslateFront();
 	}
 	
 	public void MoveDown() {
 		RotateTo(Direction.DOWN);
-		position.Y -= 1;
+		position.Y -= grid;
 		TranslateFront();
 	}
 	
 	public void MoveLeft() {
 		RotateTo(Direction.LEFT);
-		position.X -= 1;
+		position.X -= grid;
 		TranslateFront();
 	}
 	
 	
 	public void MoveRight() {
 		RotateTo(Direction.RIGHT);
-		position.X += 1;
+		position.X += grid;
 		TranslateFront();
 	}
 	
@@ -53,14 +54,14 @@ public class ObjMovements {
 		}
 	}
 	
-	public void GoTo(int x, int y)
+	public void GoTo(float x, float y)
 	{
-		int DeltaX = x - position.X;
-		int DeltaY = y - position.Y;
+		float DeltaX = x - position.X;
+		float DeltaY = y - position.Y;
 		this.Move(DeltaX, DeltaY);
 	}
 	
-	public void Move(int x, int y)
+	public void Move(float x, float y)
 	{
 		RotateTo(Direction.UP);
 		position.X += x;
@@ -81,11 +82,11 @@ public class ObjMovements {
 		default: angle = 0; break;
 		}
 		
-		transform.Rotate(0, angle - transform.rotation.eulerAngles.y, 0);
+		transform.Rotate(0,angle - transform.rotation.eulerAngles.y, 0);
 	}
 
 	void TranslateFront ()
 	{
-		this.transform.Translate(0, 0, 1);
+		this.transform.Translate(0, 0, speed);
 	}
 }

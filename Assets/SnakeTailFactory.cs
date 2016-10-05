@@ -9,7 +9,7 @@ public class SnakeTailFactory {
 		this.prefab = prefab;
 	}
 	
-	public SnakeTail Build(int x, int y, DirectionEnum.Direction direction)
+	public SnakeTail Build(float x, float y, DirectionEnum.Direction direction)
 	{
 		GameObject obj = GameObject.Instantiate(prefab) as GameObject;
 		BoardPoint pos = new BoardPoint(0 , 0);
